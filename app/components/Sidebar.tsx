@@ -9,8 +9,11 @@ export default function Sidebar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const auth = localStorage.getItem("isAuthenticated");
-    setIsAuthenticated(!!auth);
+    // This effect only runs on the client side
+    if (typeof window !== 'undefined') {
+      const auth = localStorage.getItem("isAuthenticated");
+      setIsAuthenticated(!!auth);
+    }
   }, []);
 
   const handleLogout = () => {

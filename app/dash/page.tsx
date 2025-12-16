@@ -13,6 +13,7 @@ interface CardData {
 
 export default function DashboardPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isLocked, setIsLocked] = useState(true);
   const [cards, setCards] = useState<CardData[]>([
     { id: "1", title: "Total de Clientes", value: 0 },
@@ -24,12 +25,16 @@ export default function DashboardPage() {
   const router = useRouter();
 
   useEffect(() => {
-    const auth = localStorage.getItem("isAuthenticated");
-    if (!auth) {
-      router.push("/login");
-    } else {
-      setIsAuthenticated(true);
-      carregarOrdemCards();
+    // This effect only runs on the client side
+    if (typeof window !== 'undefined') {
+      const auth = localStorage.getItem("isAuthenticated");
+      if (!auth) {
+        router.push("/login");
+      } else {
+        setIsAuthenticated(true);
+        carregarOrdemCards();
+      }
+      setIsLoading(false);
     }
   }, [router]);
 
