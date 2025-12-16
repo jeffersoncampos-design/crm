@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Negocio, StatusNegocio, Corretor } from "@/app/types/negocio";
+import DashboardLayout from "@/app/components/DashboardLayout";
 import KanbanBoard from "@/app/components/KanbanBoard";
 import FiltrosFunil from "@/app/components/FiltrosFunil";
 import ModalAdicionarNegocio from "@/app/components/ModalAdicionarNegocio";
@@ -166,22 +167,14 @@ export default function FunilVendasPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-black">
+    <DashboardLayout>
       {/* Header */}
       <header className="bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => router.push("/dash")}
-                className="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white"
-              >
-                ← Voltar
-              </button>
-              <h1 className="text-2xl font-bold text-black dark:text-white">
-                Funil de Vendas
-              </h1>
-            </div>
+            <h1 className="text-2xl font-bold text-black dark:text-white">
+              Funil de Vendas
+            </h1>
             <button
               onClick={() => setShowModal(true)}
               className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
@@ -194,7 +187,7 @@ export default function FunilVendasPage() {
 
       {/* Filtros */}
       <div className="bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="px-4 sm:px-6 lg:px-8 py-4">
           <FiltrosFunil
             corretores={corretores}
             filtroCorretor={filtroCorretor}
@@ -206,7 +199,7 @@ export default function FunilVendasPage() {
       </div>
 
       {/* Kanban Board */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-1 px-4 sm:px-6 lg:px-8 py-8">
         <KanbanBoard
           negocios={negociosFiltrados}
           onMoverNegocio={handleMoverNegocio}
@@ -222,7 +215,7 @@ export default function FunilVendasPage() {
           onAdicionar={handleAdicionarNegocio}
         />
       )}
-    </div>
+    </DashboardLayout>
   );
 }
 

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Atividade, TipoAtividade, Negocio } from "@/app/types/negocio";
+import DashboardLayout from "@/app/components/DashboardLayout";
 import ModalMarcarVisita from "@/app/components/ModalMarcarVisita";
 
 export default function AtividadesPage() {
@@ -240,22 +241,14 @@ export default function AtividadesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-black">
+    <DashboardLayout>
       {/* Header */}
       <header className="bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => router.push("/dash")}
-                className="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white"
-              >
-                ← Voltar
-              </button>
-              <h1 className="text-2xl font-bold text-black dark:text-white">
-                Agenda de Atividades
-              </h1>
-            </div>
+            <h1 className="text-2xl font-bold text-black dark:text-white">
+              Agenda de Atividades
+            </h1>
             <button
               onClick={() => {
                 setClienteSelecionado("");
@@ -270,7 +263,7 @@ export default function AtividadesPage() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-1 px-4 sm:px-6 lg:px-8 py-8">
         {/* Seletor de Data */}
         <div className="bg-white dark:bg-zinc-900 rounded-lg shadow p-6 mb-6">
           <div className="flex items-center gap-4">
@@ -402,7 +395,7 @@ export default function AtividadesPage() {
           onSalvar={handleMarcarVisita}
         />
       )}
-    </div>
+    </DashboardLayout>
   );
 }
 

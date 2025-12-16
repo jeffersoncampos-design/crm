@@ -11,6 +11,7 @@ import {
   PerfilCliente,
   BuscaCliente,
 } from "@/app/types/negocio";
+import DashboardLayout from "@/app/components/DashboardLayout";
 import PerfilClienteComponent from "@/app/components/PerfilCliente";
 import BuscaClienteComponent from "@/app/components/BuscaCliente";
 import ModalMarcarVisita from "@/app/components/ModalMarcarVisita";
@@ -348,22 +349,14 @@ export default function DetalhesNegocioPage() {
   ).length;
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-black">
+    <DashboardLayout>
       {/* Header */}
       <header className="bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center">
-              <button
-                onClick={() => router.push("/dash/funil")}
-                className="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white mr-4"
-              >
-                ← Voltar
-              </button>
-              <h1 className="text-2xl font-bold text-black dark:text-white">
-                {negocio.cliente}
-              </h1>
-            </div>
+            <h1 className="text-2xl font-bold text-black dark:text-white">
+              {negocio.cliente}
+            </h1>
             <div className="flex gap-2">
               <button
                 onClick={() => router.push("/dash/atividades")}
@@ -377,7 +370,7 @@ export default function DetalhesNegocioPage() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-1 px-4 sm:px-6 lg:px-8 py-8">
         {/* Botões de Ação */}
         <div className="flex flex-wrap gap-2 mb-6">
           <button
@@ -617,6 +610,6 @@ export default function DetalhesNegocioPage() {
           onEnviar={handleEnviarEmail}
         />
       )}
-    </div>
+    </DashboardLayout>
   );
 }
